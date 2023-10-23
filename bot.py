@@ -31,7 +31,7 @@ def run_conversation(message, chat_history=[]):
 
     # log the chat for later reference
     with open("logs.json", "w") as f:
-        f.write(json.dumps(messages, indent=4))
+        f.write(json.dumps(chat_history, indent=4))
 
     response = openai.ChatCompletion.create(
         messages=chat_history,

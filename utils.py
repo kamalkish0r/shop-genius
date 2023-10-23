@@ -164,7 +164,7 @@ async def scrape_products(query):
         for asin in asins:
             product_url = AMAZON_URL + f'dp/{asin}/'
             
-            print(product_url)
+            # print(product_url)
             await page.goto(product_url)
             await page.wait_for_load_state('load')
 
