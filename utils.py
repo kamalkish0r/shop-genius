@@ -118,7 +118,6 @@ def valid(product):
     return False if product['title'] is None or product['price'] is None or product['availability'] == "Out of Stock" else True
 
 async def scrape_products(query):
-    print(f"To scrape : {query}\n")
     products = []
     async with async_playwright() as playwright:
         try:
@@ -179,12 +178,14 @@ async def scrape_products(query):
                 product['product_link'] = product_url
                 products.append(product)
 
-            if len(products) > 2:
+            # we will return first five products we found
+            # based on these shopGPT can recommend 
+            if len(products) > 5:
                 break
 
     return products
 
 if __name__ == "__main__":
     # for testing purpose
-    products = asyncio.run(scrape_products("peanut butter high protein"))
+    products = asyncio.run(scrape_products("high proteinpe anut butter"))
     print(json.dumps(products, indent=4))
